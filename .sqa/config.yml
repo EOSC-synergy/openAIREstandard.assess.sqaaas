@@ -1,0 +1,46 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: fix/updatego
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/academic-journals-cz/openAIREstandard:
+      branch: main
+      repo: https://github.com/academic-journals-cz/openAIREstandard
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/academic-journals-cz/openAIREstandard git:
+        commands:
+        - /usr/bin/env sh .sqa/script.ruby_inventive_vulture.sh
+        container: qc.acc_reef_patient_raven
+  QC.Doc:
+    repos:
+      github.com/academic-journals-cz/openAIREstandard find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.nutmeg_eccentric_wombat.sh
+        container: qc.doc_eggplant_supportive_vulture
+      github.com/academic-journals-cz/openAIREstandard git:
+        commands:
+        - /usr/bin/env sh .sqa/script.cornflower_curious_flounder.sh
+        container: qc.doc_claret_positive_unicorn
+      github.com/academic-journals-cz/openAIREstandard markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.ruby_whimsical_gibbon.sh
+        container: qc.doc_nutmeg_empathetic_walrus
+  QC.Lic:
+    repos:
+      github.com/academic-journals-cz/openAIREstandard licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.cornflower_responsible_bear.sh
+        container: qc.lic_bronze_enigmatic_seal
+  QC.Ver:
+    repos:
+      github.com/academic-journals-cz/openAIREstandard get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.flint_supportive_manatee.sh
+        container: qc.ver_viridian_sympathetic_fox
+timeout: 5400
